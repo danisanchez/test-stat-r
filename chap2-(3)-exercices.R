@@ -25,3 +25,17 @@ abline(v = median(Obs1, na.rm = TRUE), lty = "89", lwd = 2)
 
 # description statistique des 10 première variable
 summary(mais[,2:11])
+# variances pour les variable quantitatives
+sapply(mais[,2:5], sd, na.rm = TRUE)^2
+# ecarts types pour les variables quantitatives
+sapply(mais[,2:5], sd, na.rm = TRUE)
+# coefficient de corrélation de Pearson
+# on peut remplacer method par spearman ou kendall
+cor(mais[,2:5], use = "pairwise.complete.obs", method = "pearson")  
+
+# graph de distribution des individus
+par(mfrow = c(4,3)) # permet d'avoir 4x3 graphiques sur la même fenêtre
+for (i in 2:5){hist(mais[,i], xlab = "", ylab = "Effectifs", 
+                    main= names(mais)[i], cex.axis = 1.5, cex.lab = 1.5)}
+for (i in 6:11){plot(mais[,i], ylab = "Effectifs", main = names(mais)[i],
+                        cex.axis = 1.5, cex.lab = 1.5, cex = 1.5)}
